@@ -1,0 +1,54 @@
+body{background-color: #C3FFFB}
+#wrapper{width: 600px margin:auto}
+
+#loginForm{  position: absolute;top: 50%;left: 50%;transform: translate(-50%, -65%); text-align: center;vertical-align: middle;}
+#txtUserName{background-color: transparent; border:solid 1px black; margin-bottom: 5px}
+#txtPassword{background-color: transparent; border:solid 1px black; margin-bottom: 5px}
+
+#registerForm { position: absolute;top: 50%;left: 50%;transform: translate(-50%, -65%); text-align: center;vertical-align: middle;}
+#txtUserName-register{background-color: transparent; border:solid 1px black; margin-bottom: 5px}
+#txtPassword-register{background-color: transparent; border:solid 1px black; margin-bottom: 5px}
+#txtEmail-register{background-color: transparent; border:solid 1px black; margin-bottom: 5px}
+#txtFisrtName-register{background-color: transparent; border:solid 1px black; margin-bottom: 5px}
+#txtLastName-register{background-color: transparent; border:solid 1px black; margin-bottom: 5px}
+
+#left, #right:{min-height: 300px}
+#left{width: 30%; float:left; background-color: #C3FFFB}
+#right{width: 70%; float:right; background-color: #C3FFFB}
+
+.time{font-size: 10px; color: red; font-style: italic; text-align: center;}
+#boxTitle{border: solid; 1px black;padding: 5px;text-align: center; font-weight: bold;}
+#boxContent{border: solid; 1px black; border-top: none;padding: 5px;text-align: center;margin-bottom: 10px}
+#roomchat{border: solid; 1px black;border-top: none; background-color:#C3FFFB;padding: 5px; }
+#sayHi{text-align: right;margin-bottom: 10px}
+#sayHiRoom{text-align: right;margin-bottom: 10px}
+#currentUser{font-weight: bold; font-style: italic;}
+#currentRoom{font-weight: bold; font-style: italic;}
+#listMessages{  
+display: -webkit-box;
+display: -webkit-flex;
+display: -moz-flex;
+display: -ms-flexbox;
+display: flex;
+-webkit-flex-direction: column-reverse;
+-moz-flex-direction: column-reverse;
+-ms-flex-direction: column-reverse;
+flex-direction: column-reverse;
+overflow: hidden;
+overflow-y: scroll;
+height: 200px;border:solid 1px black; background-color: #92E6D5; margin-bottom: 15px;margin-left: 15px}
+
+#thongbao{margin-left: 15px}
+
+#messages{width: 100%}
+#txtMessages{width: 75%; background-color: transparent; border: solid 1px black;padding: 5px; margin-left: 15px}
+#btnSendMessages{width: 15%;}
+
+#listMessagesRoom{height: 200px;border:solid 1px black; background-color: #92E6D5; margin-bottom: 15px;margin-left: 15px}
+
+#thongbao{margin-left: 15px; min-height: 18px}
+#thongbaoRoom{margin-left: 15px; min-height: 18px}
+
+#messagesRoom{width: 100%}
+#txtMessagesRoom{width: 75%; background-color: transparent; border: solid 1px black;padding: 5px; margin-left: 15px}
+#btnSendMessagesRoom{width: 15%;}
