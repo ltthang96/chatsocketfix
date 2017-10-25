@@ -7,7 +7,7 @@ socket.on("server-send-dki-thatbai",function(){
 
 //send ds user
 socket.on("server-send-ds-user",function(data){
-	$("#boxContent").html("");
+	$("#boxContent").html("");	
 	data.forEach(function(i){
 		$("#boxContent").append("<div class='useronline'>" + i+ "</div>");	
 	});
@@ -59,8 +59,9 @@ socket.on('all-recived', function(msg) {
             listuser += '<li class="listuser" idobj="' + msg.datahtml[i].idObj + '" nameobj="'+msg.datahtml[i].nameObj+'" nameuserobj="'+msg.datahtml[i].nameuserobj+'">' + msg.datahtml[i].nameuserobj + '</li>';
         }
     }
-    listuser += "<p>" + msg.reason + "</p>";
+    listuser += "<p class='tbao'>" + msg.reason + "</p>";
     $('#boxContent').html(listuser);
+    $('.tbao').fadeOut(10000);
 });
 
 $(document).on('click', '.off-chat-private', function(e) {
@@ -94,6 +95,12 @@ $(document).on('click', '.send-tinnhan-gui', function(e) {
     socket.emit('sender-send-private', tmp);
 });
 
+$(document).on('click', '.room',function(){
+	var roomID = $(this).attr('roomID');
+	// alert(roomID);
+	socket.emit("join-room",roomID);
+});
+
 socket.on('server-send-oneclient', function(msg) {
                 //$('#tinnhan-nhan').show();
                 //$('#tinnhan-nhan > .user-tinnhan-nhan ').html(msg.username);
@@ -119,26 +126,34 @@ socket.on("server-send-room",function(data){
 	$("#messages").hide(1000);
 });
 
+socket.on("server-send-ds-room",function(data){
+	$("#dsRoom").html("");
+	data.map(function(r){
+	var s ="<div class='room' roomID='" + r + "'> <input type='button' class='btn btn-info' value=" + r + "> </div>";
+		$("#dsRoom").append(s);
+	});
+});
+
 socket.on("server-send-messages",function(data){
 	var time = new Date().toLocaleString();
 	$("#listMessages").prepend("<p class='time'>" + time +"</p><div class='ms'>" + data.un + ":" + data.nd +"</div>");	
 });
 
-socket.on("dang-nhap",function(data){
-	$("#thongbao").html(data);
-});
+// socket.on("dang-nhap",function(data){
+// 	$("#thongbao").html(data);
+// });
 
-socket.on("stop-chat",function(){
-	$("#thongbao").html("");
-});
+// socket.on("stop-chat",function(){
+// 	$("#thongbao").html("");
+// });
 
-socket.on("room-dang-nhap",function(data){
-	$("#thongbaoRoom").html(data);
-});
+// socket.on("room-dang-nhap",function(data){
+// 	$("#thongbaoRoom").html(data);
+// });
 
-socket.on("room-stop-chat",function(){
-	$("#thongbaoRoom").html("");
-});
+// socket.on("room-stop-chat",function(){
+// 	$("#thongbaoRoom").html("");
+// });
 
 
 socket.on("server-chat-room",function(data){
@@ -246,13 +261,13 @@ $(document).ready(function(){
 		socket.emit("offchat");
 	}); 
 
-	$("#txtMessagesRoom").focusin(function(){
-		socket.emit("room-chatting");
-	}); 
+	// $("#txtMessagesRoom").focusin(function(){
+	// 	socket.emit("room-chatting");
+	// }); 
 
-	$("#txtMessagesRoom").focusout(function(){
-		socket.emit("room-offchat");
-	}); 
+	// $("#txtMessagesRoom").focusout(function(){
+	// 	socket.emit("room-offchat");
+	// }); 
 
 
 	$("#btnRoom1").click(function(){
@@ -260,7 +275,7 @@ $(document).ready(function(){
 	});
 
 	$("#btnLeaveRoom").click(function(){
-		socket.emit("leave-room");
+		socket.emit("leave-room",$("#currentRoom").val());
 		$("#listMessagesRoom").hide(1000);
 		$("#thongbaoRoom").hide(1000);
 		$("#messagesRoom").hide(1000);
@@ -272,8 +287,18 @@ $(document).ready(function(){
 
 	$("#btnSendMessagesRoom").click(function(){
 			socket.emit("user-send-messages-room", $("#txtMessagesRoom").val());
+			$("#txtMessagesRoom").val("");
 		});
 
+	$("#btntaoRoom").click(function(){
+		if($("#txtRoom").val().trim().length == 0)
+			{
+				alert("Bạn chưa nhập tên room");
+				return false;
+			}
+		socket.emit("tao-room", $("#txtRoom").val());
+		$("#txtRoom").val("");
+	});
 	// $("#btnRoom2").click(function(){
 	// 	socket.emit("join-room2");
 	// });

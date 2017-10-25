@@ -6,30 +6,38 @@
 	<script src="jquery.js"></script>
 	<script src="socket.io/socket.io.js"></script>
 	<script src="xuly.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+	<link href="css/bootstrap.min.css" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="layout.css">
 </head>
 <body>
 	<div id=wrapper>
 		<!-- form đăng nhập -->
-		<div id="loginForm">
-			<h3>LOG IN</h3>
-			<input type="text" id="txtUserName" placeholder="Username" /><br>
-			<input type="password" id="txtPassword" placeholder="Password"><br>
-			<input type="button" value="Register" id="btnRegister">
-			<input type="submit" value="Login" id="btnLogin">	
+		<div id="loginForm" class="container">
+			<h2 >LOG IN</h2>
+			<input type="text" class="form-control" id="txtUserName" placeholder="Username"/><br>
+			<input type="password" class="form-control" id="txtPassword" placeholder="Password"><br>
+			<div class="checkbox">
+         	<label>
+            <input type="checkbox" value="remember-me"> Remember me
+       	  	</label>
+       		</div>
+			<input type="button" class="btn btn-primary" value="Register" id="btnRegister">
+			<input type="submit" class="btn btn-primary" value="Login" id="btnLogin">	
 			<div class="alert-login"></div>		
 		</div>
 
 		<!-- form đăng ký -->
 		<div id="registerForm">
 			<h3>REGISTER</h3>
-			<input type="text" id="txtUserName-register" placeholder="Your Username"/><br>
-			<input type="password" id="txtPassword-register" placeholder="Your Password"/><br>
-			<input type="email" id="txtEmail-register" placeholder="Your Email"><br>
-			<input type="text" id="txtFisrtName-register" placeholder="Fisrt Name"><br>	
-			<input type="text" id="txtLastName-register" placeholder="Last Name"><br>
-			<input type="button" value="Back" id="btnBack">							
-			<input type="submit" value="Register" id="btnRegisterUser">
+			<input type="text" class="form-control" id="txtUserName-register" placeholder="Your Username"/><br>
+			<input type="password" class="form-control" id="txtPassword-register" placeholder="Your Password"/><br>
+			<input type="email" class="form-control" id="txtEmail-register" placeholder="Your Email"><br>
+			<input type="text" class="form-control" id="txtFisrtName-register" placeholder="Fisrt Name"><br>	
+			<input type="text" class="form-control" id="txtLastName-register" placeholder="Last Name"><br>
+			<input type="button" class="btn btn-primary" value="Back" id="btnBack">							
+			<input type="submit" class="btn btn-primary" value="Register" id="btnRegisterUser">
 			<div class="alert-register"></div>
 		</div>
 		
@@ -40,31 +48,36 @@
 				<div id="boxContent"></div>
 				<div id="boxTitle">Chat room</div>
 				<div id="roomchat">
-					<input type="button" id="btnRoom1" value="Room 1">
+					<input type="text" class="form-control" id="txtRoom" placeholder="Room name">
+					<input type="button" id="btntaoRoom" class="btn btn-success" value="Tạo room">
+					
 					<!-- <input type="button" id="btnRoom2" value="Room 2"> -->
 					<!-- <input type="button" id="btnRoom3" value="Room 3"> -->
+				</div>
+				<div id="dsRoom">
+					<input type="button"  class="btn btn-info" id="btnRoom1" value="Room 1">
 				</div>
 			</div>
 			<div id="right">
 				<div id="sayHi">Hello <span id="currentUser"></span>
-				<input type="button" id="btnLogout" value="Log out">
+				<input type="button" class="btn btn-default" id="btnLogout" value="Log out">
 				</div>
 				<div id="sayHiRoom">You are in room <span id="currentRoom"> </span>
-				<input type="button" id="btnLeaveRoom" value="Leave">
+				<input type="button" class="btn btn-default" id="btnLeaveRoom" value="Leave">
 				</div>
 				<div id="listMessages">
 				</div>
 				<div id="thongbao"></div>
 				<div id="messages">
-				<input  type="text" id="txtMessages" placeholder="Input text...">
-				<input  type="button" id="btnSendMessages" value="Send">
+				<input  type="text"  class="form-control" id="txtMessages" placeholder="Input text...">
+				<input  type="button" class="btn btn-success" id="btnSendMessages" value="Send">
 				</div>
 				<div id="listMessagesRoom">
 				</div>
 				<div id="thongbaoRoom"></div>
 				<div id="messagesRoom">
 				<input  type="text" id="txtMessagesRoom" placeholder="Input text...">
-				<input  type="button" id="btnSendMessagesRoom" value="Send">
+				<input  type="button" class="btn btn-success" id="btnSendMessagesRoom" value="Send">
 				</div>
 				 <input type="hidden" id="iduser" />
      		   <input type="hidden" id="nameuser" />

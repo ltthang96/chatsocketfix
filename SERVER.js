@@ -30,6 +30,7 @@ server.listen(3000);
 
 //mang user
 var mangUsers=[]; 
+var mangID=[];
 var kq = {}; // tao mang user va ds thanh cong that bai
 kq.datahtml = [];
 //check user trong database
@@ -119,6 +120,7 @@ io.on("connection",function(socket){
                         socket.username = thongtinuser.username;
                         socket.name = thongtinuser.lastname;
                         socket.nameuser= data[0].last_name +" "+data[0].fisrt_name;
+                        mangID.push(socket.id);
                         kq.nameuser=socket.nameuser;
                         kq.iduser=socket.id;
                         kq.username = user;
@@ -207,8 +209,19 @@ io.on("connection",function(socket){
     });
 
     socket.on("leave-room",function(){
-        socket.leave("Room 1");
+        socket.leave(socket.Phong);
+        // console.log(data);
         // console.log(socket.adapter.rooms);
+        var mang=[];
+        for(r in socket.adapter.rooms){
+        console.log(r);
+        if(mangID.indexOf(r)<0)
+        {
+         mang.push(r)
+        }
+        }
+        io.sockets.emit("server-send-ds-room", mang);
+        // 
     });
 
     socket.on("user-send-messages",function(data){
@@ -233,6 +246,40 @@ io.on("connection",function(socket){
         // console.log(socket.adapter.rooms);
     });
 
+    socket.on("join-room",function(data){
+        socket.leave(socket.Phong);
+        console.log(socket.Phong);
+        socket.join(data);
+        socket.Phong=data;
+        var mang=[];
+        for(r in socket.adapter.rooms){
+        console.log(r);
+        if(mangID.indexOf(r)<0)
+        {
+         mang.push(r)
+        }
+    }
+    io.sockets.emit("server-send-ds-room", mang);
+        socket.emit("server-send-room",data);
+    });
+
+    socket.on("tao-room",function(data){
+    // console.log(data);
+    socket.join(data);
+    socket.Phong= data;
+
+    var mang=[];
+    for(r in socket.adapter.rooms){
+        console.log(r);
+        if(mangID.indexOf(r)<0)
+        {
+         mang.push(r)
+        }
+    }
+    io.sockets.emit("server-send-ds-room", mang);
+    socket.emit("server-send-room",data)
+        console.log(socket.adapter.rooms);
+    });
     // socket.on("join-room2",function(){
     //  socket.join("room2");
     // });
@@ -242,17 +289,17 @@ io.on("connection",function(socket){
     // });
     
     socket.on("user-send-messages-room",function(data){
-        io.sockets.in(socket.Phong).emit("server-chat-room",{un:socket.Username, nd:data});
+        io.sockets.in(socket.Phong).emit("server-chat-room",{un:socket.nameuser, nd:data});
     });
 
-    socket.on("room-chatting",function(){
-        var s = socket.Username+" đang nhập...";
-        socket.broadcast.emit("room-dang-nhap",s);
-    });
+    // socket.on("room-chatting",function(){
+    //     var s = socket.Username+" đang nhập...";
+    //     socket.broadcast.emit("room-dang-nhap",s);
+    // });
 
-    socket.on("room-offchat",function(){
-        io.sockets.emit("room-stop-chat");
-    });
+    // socket.on("room-offchat",function(){
+    //     io.sockets.emit("room-stop-chat");
+    // });
 
 });
 

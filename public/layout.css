@@ -1,30 +1,30 @@
-body{background-color: #C3FFFB}
+body{  padding: 15px;background-color: #eee}
 #wrapper{width: 600px margin:auto}
 
 #loginForm{  position: absolute;top: 50%;left: 50%;transform: translate(-50%, -65%); text-align: center;vertical-align: middle;}
-#txtUserName{background-color: transparent; border:solid 1px black; margin-bottom: 5px}
-#txtPassword{background-color: transparent; border:solid 1px black; margin-bottom: 5px}
-
+#txtUserName{background-color: transparent; border:solid 1px black; }
+#txtPassword{background-color: transparent; border:solid 1px black; margin-bottom: -15px}
+.form-control:focus {z-index: 2;}
 #registerForm { position: absolute;top: 50%;left: 50%;transform: translate(-50%, -65%); text-align: center;vertical-align: middle;}
-#txtUserName-register{background-color: transparent; border:solid 1px black; margin-bottom: 5px}
-#txtPassword-register{background-color: transparent; border:solid 1px black; margin-bottom: 5px}
-#txtEmail-register{background-color: transparent; border:solid 1px black; margin-bottom: 5px}
-#txtFisrtName-register{background-color: transparent; border:solid 1px black; margin-bottom: 5px}
-#txtLastName-register{background-color: transparent; border:solid 1px black; margin-bottom: 5px}
+#txtUserName-register{background-color: transparent; border:solid 1px black; margin-bottom: 0px}
+#txtPassword-register{background-color: transparent; border:solid 1px black; margin-bottom: 0px}
+#txtEmail-register{background-color: transparent; border:solid 1px black; margin-bottom: 0px}
+#txtFisrtName-register{background-color: transparent; border:solid 1px black; margin-bottom: 0px}
+#txtLastName-register{background-color: transparent; border:solid 1px black; margin-bottom: 0px}
 
 #left, #right:{min-height: 300px}
-#left{width: 30%; float:left; background-color: #C3FFFB}
-#right{width: 70%; float:right; background-color: #C3FFFB}
+#left{width: 30%; float:left; background-color: #eee}
+#right{width: 70%; float:right; background-color: #eee}
 
 .time{font-size: 10px; color: red; font-style: italic; text-align: center;}
 #boxTitle{border: solid; 1px black;padding: 5px;text-align: center; font-weight: bold;}
 #boxContent{border: solid; 1px black; border-top: none;padding: 5px;text-align: center;margin-bottom: 10px}
-#roomchat{border: solid; 1px black;border-top: none; background-color:#C3FFFB;padding: 5px; }
+#roomchat{border: solid; 1px black;border-top: none;border-bottom: none; background-color:#eee;padding: 5px; }
 #sayHi{text-align: right;margin-bottom: 10px}
 #sayHiRoom{text-align: right;margin-bottom: 10px}
-#currentUser{font-weight: bold; font-style: italic;}
-#currentRoom{font-weight: bold; font-style: italic;}
-#listMessages{  
+#currentUser{font-weight: bold;}
+#currentRoom{font-weight: bold;}
+#listMessages{ border-radius: 5px; 
 display: -webkit-box;
 display: -webkit-flex;
 display: -moz-flex;
@@ -36,15 +36,14 @@ display: flex;
 flex-direction: column-reverse;
 overflow: hidden;
 overflow-y: scroll;
-height: 200px;border:solid 1px black; background-color: #92E6D5; margin-bottom: 15px;margin-left: 15px}
+height: 200px;border:solid 1px black; background-color: #eee; margin-bottom: 15px;margin-left: 15px}
 
 #thongbao{margin-left: 15px}
-
 #messages{width: 100%}
-#txtMessages{width: 75%; background-color: transparent; border: solid 1px black;padding: 5px; margin-left: 15px}
+#txtMessages{width: 70%; background-color: transparent; padding: 5px; margin-left: 15px;display: inline-block;}
 #btnSendMessages{width: 15%;}
 
-#listMessagesRoom{height: 200px;border:solid 1px black; background-color: #92E6D5; margin-bottom: 15px;margin-left: 15px}
+#listMessagesRoom{height: 200px;border:solid 1px black; background-color: #eee; margin-bottom: 15px;margin-left: 15px}
 
 #thongbao{margin-left: 15px; min-height: 18px}
 #thongbaoRoom{margin-left: 15px; min-height: 18px}
@@ -52,3 +51,7 @@ height: 200px;border:solid 1px black; background-color: #92E6D5; margin-bottom: 
 #messagesRoom{width: 100%}
 #txtMessagesRoom{width: 75%; background-color: transparent; border: solid 1px black;padding: 5px; margin-left: 15px}
 #btnSendMessagesRoom{width: 15%;}
+
+#txtRoom{width: 50%; display: inline-block;}
+.room{display:inline-block;margin:5px;}
+#dsRoom{border: solid; 1px black;border-top: none; background-color:#eee;}
