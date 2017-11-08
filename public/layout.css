@@ -1,5 +1,5 @@
-body{  padding: 15px;background-color: #eee}
-#wrapper{width: 600px margin:auto}
+html, body{width: 100%;height: 100%;padding: 10px; background-color: #d2d6de}
+/*#wrapper{width: 100%;height: 100%; margin:auto}*/
 
 #loginForm{  position: absolute;top: 50%;left: 50%;transform: translate(-50%, -65%); text-align: center;vertical-align: middle;}
 #txtUserName{background-color: transparent; border:solid 1px black; }
@@ -12,7 +12,7 @@ body{  padding: 15px;background-color: #eee}
 #txtFisrtName-register{background-color: transparent; border:solid 1px black; margin-bottom: 0px}
 #txtLastName-register{background-color: transparent; border:solid 1px black; margin-bottom: 0px}
 
-#fix-register-card{background-color:#FFFFFF;padding: 20px; position: fixed;z-index: 1;top: 50%;left: 50%;transform: translate(-50%, -65%); text-align: center;vertical-align: middle;}
+#fix-register-card{border-radius: 10px; background-color:#fff;padding: 20px; position: fixed;z-index: 1;top: 50%;left: 50%;transform: translate(-50%, -65%); text-align: center;vertical-align: middle;}
 #old-password-fix{ border:solid 1px black; margin-bottom: 7px}
 #new-password-fix{ border:solid 1px black; margin-bottom: 7px}
 #first-name-fix{ border:solid 1px black; margin-bottom: 7px}
@@ -20,19 +20,25 @@ body{  padding: 15px;background-color: #eee}
 #email-fix{ border:solid 1px black; margin-bottom: 7px}
 #nameuser{ border:solid 1px black; margin-bottom: 7px}
 
-#left, #right:{min-height: 300px}
-#left{width: 30%; float:left; background-color: #eee}
-#right{width: 70%; float:right; background-color: #eee}
+/*#left, #right:{min-height: 300px}*/
+#left{ width: 30%; float:left; background-color: #d2d6de}
+#right{ width: 70%; float:right; background-color: #d2d6de;padding-left: 10px}
 
 .time{font-size: 10px; color: red; font-style: italic; text-align: center;}
-#boxTitle{border: solid; 1px black;padding: 5px;text-align: center; font-weight: bold;}
-#boxContent{border: solid; 1px black; border-top: none;padding: 5px;text-align: center;margin-bottom: 10px}
-#roomchat{border: solid; 1px black;border-top: none;border-bottom: none; background-color:#eee;padding: 5px; }
-#sayHi{text-align: right;margin-bottom: 10px}
+#boxTitle{   border-radius: 10px 10px 0px 0px;padding: 5px;text-align: center; font-weight: bold; background-color:#eee;}
+#boxContent{  border-radius: 0px 0px 10px 10px;padding: 5px;text-align: center;margin-bottom: 10px; background-color:#eee;}
+#roomchat{width: 100%; background-color:#eee;padding: 5px; }
+#txtRoom{width: 100%; display: inline-block;margin-bottom: 5px}
+.room{display:inline-block;margin:5px;}
+#btntaoRoom{}
+#dsRoom{ background-color:#eee; border-radius: 0px 0px 10px 10px;}
+
+#sayHi{text-align: right;margin-bottom: 10px; padding-top: 5px;}
 #sayHiRoom{text-align: right;margin-bottom: 10px}
 #currentUser{font-weight: bold;}
 #currentRoom{font-weight: bold;}
-#listMessages{ border-radius: 5px; 
+
+#listMessages{ border-radius: 10px; 
 display: -webkit-box;
 display: -webkit-flex;
 display: -moz-flex;
@@ -44,14 +50,14 @@ display: flex;
 flex-direction: column-reverse;
 overflow: hidden;
 overflow-y: scroll;
-height: 200px;border:solid 1px black; background-color: #eee; margin-bottom: 15px;margin-left: 15px}
+height: 315px;  padding: 10px;  background-color: #eee; margin-bottom: 15px;}
 
-#thongbao{margin-left: 15px}
-#messages{width: 100%}
-#txtMessages{width: 70%; background-color: transparent; padding: 5px; margin-left: 15px;display: inline-block;}
-#btnSendMessages{width: 15%;}
+/*#thongbao{margin-left: 15px}*/
+#messages{width: 100%;}
+#txtMessages{width: 70%; background-color: #eee;display: inline-block;}
+#btnSendMessages{width: 28%;}
 
-#listMessagesRoom{ border-radius: 5px; 
+#listMessagesRoom{ border-radius: 10px; 
 display: -webkit-box;
 display: -webkit-flex;
 display: -moz-flex;
@@ -63,42 +69,13 @@ display: flex;
 flex-direction: column-reverse;
 overflow: hidden;
 overflow-y: scroll;
-height: 200px;border:solid 1px black; background-color: #eee; margin-bottom: 15px;margin-left: 15px}
+height: 315px;  padding: 10px;  background-color: #eee; margin-bottom: 15px;}
 
 #thongbao{margin-left: 15px; min-height: 18px}
 #thongbaoRoom{margin-left: 15px; min-height: 18px}
 
 #messagesRoom{width: 100%}
-#txtMessagesRoom{width: 70%; background-color: transparent; padding: 5px; margin-left: 15px;display: inline-block;}
+#txtMessagesRoom{width: 70%; background-color: #eee;display: inline-block;}
 #btnSendMessagesRoom{width: 15%;}
 
-#txtRoom{width: 50%; display: inline-block;}
-.room{display:inline-block;margin:5px;}
-#dsRoom{border: solid; 1px black;border-top: none; background-color:#eee;}
 
-.talk-bubble {
-	margin: 40px;
-  display: inline-block;
-  position: relative;
-	width: 200px;
-	height: auto;
-	background-color: lightyellow;
-}
-.round{
-  border-radius: 30px;
-	-webkit-border-radius: 30px;
-	-moz-border-radius: 30px;
-
-}
-.tri-right.btm-left:after{
-	content: ' ';
-	position: absolute;
-	width: 0;
-	height: 0;
-	left: 0px;
-  right: auto;
-  top: auto;
-	bottom: -20px;
-	border: 22px solid;
-	border-color: transparent transparent transparent lightyellow;
-}

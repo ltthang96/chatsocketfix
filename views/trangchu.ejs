@@ -3,6 +3,9 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Chat</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <!-- Tell the browser to be responsive to screen width -->
+ 	<meta content="width=device-width,height=device-height, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 	<script src="jquery.js"></script>
 	<script src="socket.io/socket.io.js"></script>
 	<script src="xuly.js"></script>
@@ -10,9 +13,39 @@
 	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 	<link href="css/bootstrap.min.css" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="layout.css">
+	<!-- <link rel="stylesheet" type="text/css" href="AdminLTE.min.css"> -->
+	<style>
+
+
+@media only screen and (max-height:375px) {
+  /* For mobile phones: */
+  #listMessages{height: 230px}
+  #listMessagesRoom{height: 230px}
+}
+@media only screen and (min-height:485px) {
+  /* For mobile phones: */
+  #listMessages{height: 460px}
+  #listMessagesRoom{height: 460px}
+}
+
+@media only screen and (min-width:920px) {
+  /* For mobile phones: */
+  #txtRoom{width: 65%;margin-bottom: 0px}
+}
+	@media only screen and (max-width:400px) {
+  /* For mobile phones: */
+ #fix-register-card{width:90%;}
+}
+	@media only screen and (max-width:320px) {
+  /* For mobile phones: */
+  #left, #right {width:100%;padding-left: 0px;}
+  #txtRoom{width: 57%;margin-bottom: 0px}
+  #listMessages{height: 270px}
+}
+</style>
 </head>
 <body>
-	<div id=wrapper>
+	<div id="wrapper">
 		<!-- form đăng nhập -->
 		<div id="loginForm" class="container">
 			<h2 >LOG IN</h2>
@@ -27,6 +60,19 @@
 			<input type="submit" class="btn btn-primary" value="Login" id="btnLogin">	
 			<div class="alert-login"></div>		
 		</div>
+		<!-- form đăng ký -->
+		<div id="registerForm">
+			<h3>REGISTER</h3>
+			<input type="text" class="form-control" id="txtUserName-register" placeholder="Your Username"/><br>
+			<input type="password" class="form-control" id="txtPassword-register" placeholder="Your Password"/><br>
+			<input type="email" class="form-control" id="txtEmail-register" placeholder="Your Email"><br>
+			<input type="text" class="form-control" id="txtFisrtName-register" placeholder="Fisrt Name"><br>	
+			<input type="text" class="form-control" id="txtLastName-register" placeholder="Last Name"><br>
+			<input type="button" class="btn btn-primary" value="Back" id="btnBack">							
+			<input type="submit" class="btn btn-primary" value="Register" id="btnRegisterUser">
+			<div class="alert-register"></div>
+		</div>
+
 	<!-- form fix info -->
         <div id="fix-register-card">
 			<h3>SỬA THÔNG TIN CÁ NHÂN</h3>
@@ -48,22 +94,11 @@
 			</div> -->
 			<div class="log-fix-card"></div>
         </div>
-		<!-- form đăng ký -->
-		<div id="registerForm">
-			<h3>REGISTER</h3>
-			<input type="text" class="form-control" id="txtUserName-register" placeholder="Your Username"/><br>
-			<input type="password" class="form-control" id="txtPassword-register" placeholder="Your Password"/><br>
-			<input type="email" class="form-control" id="txtEmail-register" placeholder="Your Email"><br>
-			<input type="text" class="form-control" id="txtFisrtName-register" placeholder="Fisrt Name"><br>	
-			<input type="text" class="form-control" id="txtLastName-register" placeholder="Last Name"><br>
-			<input type="button" class="btn btn-primary" value="Back" id="btnBack">							
-			<input type="submit" class="btn btn-primary" value="Register" id="btnRegisterUser">
-			<div class="alert-register"></div>
-		</div>
-		
+
 		<!-- chat -->
 		<div id="chatForm">
 			<div id="left">
+				<!-- <h2> Chat With Everyone</h2> -->
 				<div id="boxTitle">User Online</div>
 				<div id="boxContent"></div>
 				<div id="boxTitle">Chat room</div>
@@ -90,15 +125,16 @@
 				<!-- <div>
 					<img width="300px" id="showPhoto" src="">
 				</div> -->
-				<div id="thongbao"></div>
+				<!-- <div id="thongbao"></div> -->
 				<div id="messages">
 				<input  type="text"  class="form-control" id="txtMessages" placeholder="Input text...">
 				<input  type="button" class="btn btn-success" id="btnSendMessages" value="Send">
 				<!-- <input id="fileSelector" type="file"> -->
 				</div>
+
 				<div id="listMessagesRoom">
 				</div>
-				<div id="thongbaoRoom"></div>
+				<!-- <div id="thongbaoRoom"></div> -->
 				<div id="messagesRoom">
 				<input  type="text" class="form-control" id="txtMessagesRoom" placeholder="Input text...">
 				<input  type="button" class="btn btn-success" id="btnSendMessagesRoom" value="Send">
@@ -107,6 +143,6 @@
      		   <input type="hidden" id="nameuser" />
 			</div>
 		</div>
-	</div>
+	</div>	<!-- <footer>Design by &copy; Thắng Lục </footer> -->
 </body>
 </html>

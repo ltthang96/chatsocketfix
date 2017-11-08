@@ -337,10 +337,16 @@ io.on("connection",function(socket){
 
     socket.on("tao-room",function(data){
     // console.log(data);
-    if(data==socket.Phong){
+    // if(data==socket.Phong){
+    //         socket.emit("log-room");
+    //         return false;
+    //     }
+    for (e in socket.adapter.rooms){
+    if(data==e){
             socket.emit("log-room");
             return false;
         }
+    }
     socket.leave(socket.Phong);
     socket.join(data);
     socket.Phong= data;
