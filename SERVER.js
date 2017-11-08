@@ -1,4 +1,5 @@
 var express = require("express");
+// var fs = require("fs");
 var app = express();
 app.use(express.static("public"));
 app.set("view engine", "ejs");
@@ -54,6 +55,17 @@ function insertdb(user_name, user_password, user_email,fisrt_name,last_name, cal
     });
 }
 
+//fix info
+function updatedb(user_id,user_password,user_email,fisrt_name,last_name,callback){
+    var sql = "UPDATE user SET user_password = '"+ user_password +"',user_email = '"+ user_email +"',fisrt_name = '"+ fisrt_name +"',last_name = '"+ last_name +"' where user_id='"+ user_id+"'";
+    connection.query(sql,function(err,result,fields){
+        if (err) {
+            console.log('this.sql', this.sql); //command/query
+            callback(err, null);
+        } else callback(null, result);
+    });
+}
+
 //kiem tra login
 function checkdangnhap(username, callback) {
         connection.query("select * from user where user_name ='" + username + "'" , function(err, result, fields) {
@@ -61,6 +73,21 @@ function checkdangnhap(username, callback) {
         else callback(null, result);
     });
 }
+
+// function randomString(length)
+// {
+//     var text = "";
+//     var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_";
+ 
+//     for( var i=0; i < length; i++ )
+//         text += possible.charAt(Math.floor(Math.random() * possible.length));
+ 
+//     return text;
+// }
+// function getBase64Image(imgData) {
+//     return imgData.replace(/^data:image\/(png|jpeg|jpg);base64,/, "");
+// }
+
 
 io.on("connection",function(socket){
     console.log("Có "+socket.id+ " kết nối đến server");
@@ -96,8 +123,47 @@ io.on("connection",function(socket){
                 }
             });
     });
-//event login
 
+    socket.on("request-info",function(nameuser){
+        checkdangnhap(nameuser,function(err,data)
+        {
+            var info={};
+            info.firstname=data[0].fisrt_name;
+            info.lastname=data[0].last_name;
+            info.email=data[0].user_email;
+            socket.emit("send-info",info);
+        });
+    });
+
+    socket.on("send-fix-info",function(result){
+        checkdangnhap(result.nameuser,function(err,data){
+            if (err) {
+                console.log('err:' + err);
+                console.log('error SQL');
+            }else if(data.length>0){
+                // console.log(result.oldpass);
+                var res =bcrypt.compareSync(result.oldpass, data[0].user_password);
+                // console.log(res);
+                if(res==true){
+                    var hashPassword = bcrypt.hashSync(result.newpass, salt);
+                    updatedb(data[0].user_id, hashPassword, result.email, result.firstname, result.lastname, function(err,datadb){
+                        if(err){ 
+                            console.log('err-update' + err)
+                        }else{
+                            socket.emit('server-res-fix', { reason: 'Thay đổi thông tin thành công. Đăng xuất sau 2s!' });
+                            setTimeout(function(){
+                            socket.emit('kick');                                
+                            },2000);
+                        }
+                    });
+                }else{
+                    console.log('client ' + socket.id + ' fix sai mat khau cu');
+                    socket.emit('server-res-fix', { reason: 'Mật khẩu cũ chưa đúng' });
+                }
+            }
+        });
+    });
+//event login
     socket.on("login", function(thongtinuser){
         var user = thongtinuser.username;
         checkdangnhap(thongtinuser.username,function(err,data)
@@ -135,6 +201,7 @@ io.on("connection",function(socket){
                         console.log(kq.datahtml);
                         io.emit('all-recived', kq);
                         socket.emit('server-send-login',kq);
+
                     }
                     else{
                         console.log('emaill and password does not match!'); //sai pass
@@ -142,6 +209,7 @@ io.on("connection",function(socket){
                         kq.result=0;
                         kq.reason="Email and password does not match!";
                         socket.emit('server-send-login',kq);
+
                     }
                 }
                 else{
@@ -247,6 +315,10 @@ io.on("connection",function(socket){
     });
 
     socket.on("join-room",function(data){
+        if(data==socket.Phong){
+            socket.emit("log-room");
+            return false;
+        }
         socket.leave(socket.Phong);
         console.log(socket.Phong);
         socket.join(data);
@@ -265,6 +337,11 @@ io.on("connection",function(socket){
 
     socket.on("tao-room",function(data){
     // console.log(data);
+    if(data==socket.Phong){
+            socket.emit("log-room");
+            return false;
+        }
+    socket.leave(socket.Phong);
     socket.join(data);
     socket.Phong= data;
 
@@ -292,6 +369,25 @@ io.on("connection",function(socket){
         io.sockets.in(socket.Phong).emit("server-chat-room",{un:socket.nameuser, nd:data});
     });
 
+  //   socket.on("sendPhoto", function(data){
+  //   var guess = data.base64.match(/^data:image\/(png|jpeg);base64,/)[1];
+  //   var ext = "";
+  //   switch(guess) {
+  //     case "png"  : ext = ".png"; break;
+  //     case "jpeg" : ext = ".jpg"; break;
+  //     default     : ext = ".bin"; break;
+  //   }
+  //   var savedFilename = "/upload/"+randomString(10)+ext;
+  //   fs.writeFile(__dirname+"/public"+savedFilename, getBase64Image(data.base64), 'base64', function(err) {
+  //     if (err !== null)
+  //       console.log(err);
+  //     else 
+  //       io.sockets.emit("receivePhoto", {
+  //         path: savedFilename,
+  //       });
+  //       console.log("Send photo success!");
+  //   });
+  // });
     // socket.on("room-chatting",function(){
     //     var s = socket.Username+" đang nhập...";
     //     socket.broadcast.emit("room-dang-nhap",s);

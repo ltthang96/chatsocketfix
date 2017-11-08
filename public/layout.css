@@ -12,6 +12,14 @@ body{  padding: 15px;background-color: #eee}
 #txtFisrtName-register{background-color: transparent; border:solid 1px black; margin-bottom: 0px}
 #txtLastName-register{background-color: transparent; border:solid 1px black; margin-bottom: 0px}
 
+#fix-register-card{background-color:#FFFFFF;padding: 20px; position: fixed;z-index: 1;top: 50%;left: 50%;transform: translate(-50%, -65%); text-align: center;vertical-align: middle;}
+#old-password-fix{ border:solid 1px black; margin-bottom: 7px}
+#new-password-fix{ border:solid 1px black; margin-bottom: 7px}
+#first-name-fix{ border:solid 1px black; margin-bottom: 7px}
+#last-name-fix{ border:solid 1px black; margin-bottom: 7px}
+#email-fix{ border:solid 1px black; margin-bottom: 7px}
+#nameuser{ border:solid 1px black; margin-bottom: 7px}
+
 #left, #right:{min-height: 300px}
 #left{width: 30%; float:left; background-color: #eee}
 #right{width: 70%; float:right; background-color: #eee}
@@ -43,15 +51,54 @@ height: 200px;border:solid 1px black; background-color: #eee; margin-bottom: 15p
 #txtMessages{width: 70%; background-color: transparent; padding: 5px; margin-left: 15px;display: inline-block;}
 #btnSendMessages{width: 15%;}
 
-#listMessagesRoom{height: 200px;border:solid 1px black; background-color: #eee; margin-bottom: 15px;margin-left: 15px}
+#listMessagesRoom{ border-radius: 5px; 
+display: -webkit-box;
+display: -webkit-flex;
+display: -moz-flex;
+display: -ms-flexbox;
+display: flex;
+-webkit-flex-direction: column-reverse;
+-moz-flex-direction: column-reverse;
+-ms-flex-direction: column-reverse;
+flex-direction: column-reverse;
+overflow: hidden;
+overflow-y: scroll;
+height: 200px;border:solid 1px black; background-color: #eee; margin-bottom: 15px;margin-left: 15px}
 
 #thongbao{margin-left: 15px; min-height: 18px}
 #thongbaoRoom{margin-left: 15px; min-height: 18px}
 
 #messagesRoom{width: 100%}
-#txtMessagesRoom{width: 75%; background-color: transparent; border: solid 1px black;padding: 5px; margin-left: 15px}
+#txtMessagesRoom{width: 70%; background-color: transparent; padding: 5px; margin-left: 15px;display: inline-block;}
 #btnSendMessagesRoom{width: 15%;}
 
 #txtRoom{width: 50%; display: inline-block;}
 .room{display:inline-block;margin:5px;}
 #dsRoom{border: solid; 1px black;border-top: none; background-color:#eee;}
+
+.talk-bubble {
+	margin: 40px;
+  display: inline-block;
+  position: relative;
+	width: 200px;
+	height: auto;
+	background-color: lightyellow;
+}
+.round{
+  border-radius: 30px;
+	-webkit-border-radius: 30px;
+	-moz-border-radius: 30px;
+
+}
+.tri-right.btm-left:after{
+	content: ' ';
+	position: absolute;
+	width: 0;
+	height: 0;
+	left: 0px;
+  right: auto;
+  top: auto;
+	bottom: -20px;
+	border: 22px solid;
+	border-color: transparent transparent transparent lightyellow;
+}

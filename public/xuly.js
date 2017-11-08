@@ -26,6 +26,10 @@ socket.on("server-send-dki-thanhcong",function(data){
 	// $("#sayHiRoom").hide();
 });
 
+socket.on("log-room",function(){
+	alert("Bạn đã ở trong room này rồi")
+});
+
 socket.on("server-send-login",function(data){
 	if((data.result)>0)
 	{
@@ -101,6 +105,21 @@ $(document).on('click', '.room',function(){
 	socket.emit("join-room",roomID);
 });
 
+$(document).on('click','.fixuser',function(e){
+    $('#fix-register-card').show();
+    socket.emit("request-info",$("#nameuser").val());
+});
+
+socket.on("send-info",function(info){
+	$("#first-name-fix").val(info.firstname);
+	$("#last-name-fix").val(info.lastname);
+	$('#email-fix').val(info.email);
+});
+
+socket.on("server-res-fix",function(res){
+	$('.log-fix-card').html(res.reason);
+});
+
 socket.on('server-send-oneclient', function(msg) {
                 //$('#tinnhan-nhan').show();
                 //$('#tinnhan-nhan > .user-tinnhan-nhan ').html(msg.username);
@@ -161,10 +180,16 @@ socket.on("server-chat-room",function(data){
 	$("#listMessagesRoom").prepend("<div class='msRoom'>" + data.un + ":" + data.nd +"</div><p class='time'>" + time +"</p>");	
 });
 
+socket.on('kick',function(){
+	$("#btnLogout").click();
+	$("#fix-register-card").hide();
+});
+
 $(document).ready(function(){
 	$("#loginForm").show();
 	$("#registerForm").hide();
 	$("#chatForm").hide();
+	$('#fix-register-card').hide();
 
 	//emit username>server
 	$("#btnRegister").click(function(){
@@ -174,9 +199,44 @@ $(document).ready(function(){
 	});
 
 	$("#btnBack").click(function(){
-	$("#loginForm").show();
-	$("#registerForm").hide();
+		$("#loginForm").show();
+		$("#registerForm").hide();
 	});
+
+	$("#btnDone-fix").click(function(){
+		var nameuser = $("#nameuser").val();
+		var oldpass = $('#old-password-fix').val();
+		var newpass = $('#new-password-fix').val();
+		var firstname = $('#first-name-fix').val();
+		var lastname = $('#last-name-fix').val();
+		var email = $('#email-fix').val();
+		if (oldpass.trim()==0){
+			$('#old-password-fix').focus;
+			$(".log-fix-card").html("Bạn chưa nhập mật khẩu cũ");
+			return false;
+		}else if (newpass.trim()==0){
+			$('#new-password-fix').focus;
+			$(".log-fix-card").html("Bạn chưa nhập mật khẩu mới");
+			return false;
+		}else if (email.trim()==0){
+			$('#email-fix').focus;
+			$(".log-fix-card").html("Email không được để trống");
+			return false;
+		}else if (firstname.trim()==0){
+			$('#first-name-fix').focus;
+			$(".log-fix-card").html("Bạn chưa nhập đầy đủ tên");
+			return false;
+		}else if (lastname.trim()==0){
+			$('#last-name-fix').focus;
+			$(".log-fix-card").html("Bạn chưa nhập đầy đủ tên");
+			return false;
+		}
+		socket.emit('send-fix-info',{nameuser:nameuser, oldpass:oldpass, newpass:newpass,email:email, firstname:firstname, lastname:lastname});
+	});
+
+	$('#btnCancel').click(function(e){
+        $('#fix-register-card').hide();
+    });
 
 	$("#btnRegisterUser").click(function(e){
 	   	var u = $('#txtUserName-register').val();
@@ -309,3 +369,24 @@ $(document).ready(function(){
 
 
 });
+
+// window.onload = function() {
+// 	document.getElementById("fileSelector").addEventListener("change", function(){		
+// 		submitImg();
+// 	});
+
+// 	socket.on('receivePhoto', function(data){
+// 	document.getElementById("showPhoto").src = data.path
+// 	});
+// };
+// function submitImg(){
+// 	var selector 	= document.getElementById("fileSelector");
+// 	var img 	= document.getElementById("review");
+
+// 	var reader = new FileReader();
+//         reader.onload = function (e) {
+//             img.src = e.target.result;
+//             socket.emit("sendPhoto", {base64:e.target.result});
+//         }
+//  	reader.readAsDataURL(selector.files[0]);
+// }

@@ -27,7 +27,27 @@
 			<input type="submit" class="btn btn-primary" value="Login" id="btnLogin">	
 			<div class="alert-login"></div>		
 		</div>
-
+	<!-- form fix info -->
+        <div id="fix-register-card">
+			<h3>SỬA THÔNG TIN CÁ NHÂN</h3>
+			<input autocomplete="off" class="form-control" type="text" name="user-name" id="nameuser" readonly>
+			<input autocomplete="off" class="form-control" type="password" name="old password" id="old-password-fix" placeholder="Old Password">
+			<input autocomplete="off" class="form-control" type="password" name="password" id="new-password-fix" placeholder="New Password">
+			<input autocomplete="off" class="form-control" type="text" name="email" id="email-fix" placeholder="Email">
+			<input autocomplete="off" class="form-control" type="text" name="firstname" id="first-name-fix" placeholder="First Name">
+			<input autocomplete="off" class="form-control" type="text" name="lastname" id="last-name-fix" placeholder="Last Name">
+			<input type="button" class="btn btn-primary" value="OK" id="btnDone-fix">							
+			<!--  <button id="fix-registertuser-action" title="Sửa thông tin">
+			        <i>Ok</i>
+			      </button> -->
+			<input type="button" class="btn btn-primary" value="Cancel" id="btnCancel">							
+			<!--                 <div style="margin-top: 10px">
+			<button title="back">
+			    <i>Cancel</i>
+			          </button>
+			</div> -->
+			<div class="log-fix-card"></div>
+        </div>
 		<!-- form đăng ký -->
 		<div id="registerForm">
 			<h3>REGISTER</h3>
@@ -55,7 +75,7 @@
 					<!-- <input type="button" id="btnRoom3" value="Room 3"> -->
 				</div>
 				<div id="dsRoom">
-					<input type="button"  class="btn btn-info" id="btnRoom1" value="Room 1">
+					<!-- <input type="button"  class="btn btn-info" id="btnRoom1" value="Room 1"> -->
 				</div>
 			</div>
 			<div id="right">
@@ -67,16 +87,20 @@
 				</div>
 				<div id="listMessages">
 				</div>
+				<!-- <div>
+					<img width="300px" id="showPhoto" src="">
+				</div> -->
 				<div id="thongbao"></div>
 				<div id="messages">
 				<input  type="text"  class="form-control" id="txtMessages" placeholder="Input text...">
 				<input  type="button" class="btn btn-success" id="btnSendMessages" value="Send">
+				<!-- <input id="fileSelector" type="file"> -->
 				</div>
 				<div id="listMessagesRoom">
 				</div>
 				<div id="thongbaoRoom"></div>
 				<div id="messagesRoom">
-				<input  type="text" id="txtMessagesRoom" placeholder="Input text...">
+				<input  type="text" class="form-control" id="txtMessagesRoom" placeholder="Input text...">
 				<input  type="button" class="btn btn-success" id="btnSendMessagesRoom" value="Send">
 				</div>
 				 <input type="hidden" id="iduser" />
