@@ -68,9 +68,11 @@ socket.on('all-recived', function(msg) {
     $('.tbao').fadeOut(6000);
 });
 
+
 $(document).on('click', '.off-chat-private', function(e) {
     $(this).parent().parent().hide();
 });
+
 $(document).on('click', '.listuser', function(e) {
     var iduser = $(this).attr("idobj");
     if(iduser == "090") return;
@@ -185,12 +187,33 @@ socket.on('kick',function(){
 	$("#fix-register-card").hide();
 });
 
+socket.on('receivePhoto', function(data){
+		console.log(data);
+	// 	document.getElementById("showPhoto").src = data.path;
+	$("#listMessages").prepend("<div class='ms'>" + data.un +': ' + "<img id='theImg' src="+ data.path + " /></div>");
+	// $('#listMessages').prepend("<img id='theImg' src="+ data.path + " />'");	
+});
+
+function submitImg(){
+	var selector 	= document.getElementById("fileSelector");
+	// var img 			= document.getElementById("review");
+
+	var reader = new FileReader();
+  reader.onload = function (e) {
+    // img.src = e.target.result;
+		socket.emit("sendPhoto", {base64:e.target.result});
+  }
+ 	reader.readAsDataURL(selector.files[0]);
+}
 $(document).ready(function(){
 	$("#loginForm").show();
 	$("#registerForm").hide();
 	$("#chatForm").hide();
 	$('#fix-register-card').hide();
 
+	$('#fileSelector').on('change',function(){
+		submitImg();
+	});
 	//emit username>server
 	$("#btnRegister").click(function(){
 		// socket.emit("Client-send-username", $("#txtUserName").val());
@@ -359,6 +382,8 @@ $(document).ready(function(){
 		socket.emit("tao-room", $("#txtRoom").val());
 		$("#txtRoom").val("");
 	});
+
+
 	// $("#btnRoom2").click(function(){
 	// 	socket.emit("join-room2");
 	// });

@@ -52,7 +52,7 @@ flex-direction: column-reverse;
 overflow: hidden;
 overflow-y: scroll;
 height: 315px;  padding: 10px;  background-color: #eee; margin-bottom: 15px;}
-
+#theImg{max-width: 150px;max-height: 150px}
 /*#thongbao{margin-left: 15px}*/
 #messages{width: 100%;}
 #txtMessages{width: 70%; background-color: #eee;display: inline-block;}

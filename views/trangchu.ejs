@@ -35,10 +35,18 @@
 		$('.usertitle').click(function(){
 		    $('#boxContent').toggle(100);
 		});
+
 		$('.roomtitle').click(function(){
 		    $('#roomchat').toggle(100);
 		    $('#dsRoom').toggle(100);
 		});
+
+		// $("#theImg").click(function(){
+		// 	$(this).target = "_blank";
+	 //        window.location = $(this).find("a").attr("href");
+	 //        return false;
+		// });
+
 	});
 	</script>
 	<style>
@@ -156,7 +164,9 @@
 				<div id="messages">
 				<input  type="text"  class="form-control" id="txtMessages" placeholder="Input text...">
 				<input  type="button" class="btn btn-success" id="btnSendMessages" value="Send">
-				<!-- <input id="fileSelector" type="file"> -->
+				<!-- <img id="review" width="300px"></img> -->
+					  <!-- <img width="300px" id="showPhoto" src=""> -->
+				<input id="fileSelector" type="file">
 				</div>
 
 				<div id="listMessagesRoom">
