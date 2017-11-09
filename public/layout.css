@@ -21,17 +21,18 @@ html, body{width: 100%;height: 100%;padding: 10px; background-color: #d2d6de}
 #nameuser{ border:solid 1px black; margin-bottom: 7px}
 
 /*#left, #right:{min-height: 300px}*/
-#left{ width: 30%; float:left; background-color: #d2d6de}
+#left{ width: 30%; float:left; background-color: #d2d6de; padding-top: 48px}
 #right{ width: 70%; float:right; background-color: #d2d6de;padding-left: 10px}
 
 .time{font-size: 10px; color: red; font-style: italic; text-align: center;}
+.roomtitle{margin-top: 10px}
 #boxTitle{   border-radius: 10px 10px 0px 0px;padding: 5px;text-align: center; font-weight: bold; background-color:#eee;}
-#boxContent{  border-radius: 0px 0px 10px 10px;padding: 5px;text-align: center;margin-bottom: 10px; background-color:#eee;}
+#boxContent{max-height:185px;overflow-y:scroll;  border-radius: 0px 0px 10px 10px;padding: 5px;text-align: center;margin-bottom: 0px; background-color:#eee;}
 #roomchat{width: 100%; background-color:#eee;padding: 5px; }
 #txtRoom{width: 100%; display: inline-block;margin-bottom: 5px}
 .room{display:inline-block;margin:5px;}
 #btntaoRoom{}
-#dsRoom{ background-color:#eee; border-radius: 0px 0px 10px 10px;}
+#dsRoom{max-height:225px;overflow-y:scroll;  background-color:#eee; border-radius: 0px 0px 10px 10px;}
 
 #sayHi{text-align: right;margin-bottom: 10px; padding-top: 5px;}
 #sayHiRoom{text-align: right;margin-bottom: 10px}
@@ -76,6 +77,6 @@ height: 315px;  padding: 10px;  background-color: #eee; margin-bottom: 15px;}
 
 #messagesRoom{width: 100%}
 #txtMessagesRoom{width: 70%; background-color: #eee;display: inline-block;}
-#btnSendMessagesRoom{width: 15%;}
+#btnSendMessagesRoom{width: 28%;}
 
 

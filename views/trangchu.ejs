@@ -14,18 +14,43 @@
 	<link href="css/bootstrap.min.css" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="layout.css">
 	<!-- <link rel="stylesheet" type="text/css" href="AdminLTE.min.css"> -->
+	<script>
+		$(window).on('resize',function(){
+    if($(this).width() <=320){
+        $('#boxContent').hide();
+        $('#roomchat').hide();
+        $('#dsRoom').hide();
+    	$('.usertitle').css('border-radius','0px');
+    	$('.roomtitle').css('border-radius','0px');
+    }
+    else   {
+    $('.usertitle').css('border-radius','10px 10px 0px 0px');
+	$('.roomtitle').css('border-radius','10px 10px 0px 0px'); 
+    $('#boxContent').show();
+    $('#roomchat').show();
+	$('#dsRoom').show();
+	}
+});
+	$(document).ready(function(){	
+		$('.usertitle').click(function(){
+		    $('#boxContent').toggle(100);
+		});
+		$('.roomtitle').click(function(){
+		    $('#roomchat').toggle(100);
+		    $('#dsRoom').toggle(100);
+		});
+	});
+	</script>
 	<style>
-
-
 @media only screen and (max-height:375px) {
   /* For mobile phones: */
   #listMessages{height: 230px}
-  #listMessagesRoom{height: 230px}
+  #listMessagesRoom{height: 210px}
 }
 @media only screen and (min-height:485px) {
   /* For mobile phones: */
   #listMessages{height: 460px}
-  #listMessagesRoom{height: 460px}
+  #listMessagesRoom{height: 430px}
 }
 
 @media only screen and (min-width:920px) {
@@ -38,9 +63,11 @@
 }
 	@media only screen and (max-width:320px) {
   /* For mobile phones: */
-  #left, #right {width:100%;padding-left: 0px;}
+  #left, #right {width:100%;padding-left: 0px;padding-top: 0px}
   #txtRoom{width: 57%;margin-bottom: 0px}
   #listMessages{height: 270px}
+  #listMessagesRoom{height: 230px}
+
 }
 </style>
 </head>
@@ -99,9 +126,9 @@
 		<div id="chatForm">
 			<div id="left">
 				<!-- <h2> Chat With Everyone</h2> -->
-				<div id="boxTitle">User Online</div>
+				<div id="boxTitle" class="usertitle">User Online</div>
 				<div id="boxContent"></div>
-				<div id="boxTitle">Chat room</div>
+				<div id="boxTitle" class="roomtitle">Chat room</div>
 				<div id="roomchat">
 					<input type="text" class="form-control" id="txtRoom" placeholder="Room name">
 					<input type="button" id="btntaoRoom" class="btn btn-success" value="Tạo room">

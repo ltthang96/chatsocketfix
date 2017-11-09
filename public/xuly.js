@@ -55,17 +55,17 @@ socket.on("server-send-login",function(data){
 socket.on('all-recived', function(msg) {
 	var iduser = $("#iduser").attr('value');
     //console.log(msg.datahtml);
-    var listuser = '<li class="listuser fixuser" idobj="090" style="color: white;background: #0288D1;font-weight: bold;cursor: pointer;">Sửa thông tin user</li>';
+    var listuser = '<li class="listuser fixuser well well-sm" idobj="090" style=" margin-bottom:0; font-weight: bold;background-color:skyblue;cursor: pointer;list-style-type: none;">Sửa thông tin user</li>';
     for (i = 0; i < msg.datahtml.length; i++) {
         if (iduser == msg.datahtml[i].idObj) {
-            listuser += '<li class="listuser activeuser" idobj="' + msg.datahtml[i].idObj + '"     nameobj="'+msg.datahtml[i].nameObj+'" nameuserobj="'+msg.datahtml[i].nameuserobj+'">' + msg.datahtml[i].nameuserobj + '</li>';
+            listuser += '<li class="listuser activeuser well well-sm" style="border:none;margin-bottom:0;list-style-type: none;background-color:ivory;" idobj="' + msg.datahtml[i].idObj + '"     nameobj="'+msg.datahtml[i].nameObj+'" nameuserobj="'+msg.datahtml[i].nameuserobj+'">' + msg.datahtml[i].nameuserobj + '</li>';
         } else {
-            listuser += '<li class="listuser" idobj="' + msg.datahtml[i].idObj + '" nameobj="'+msg.datahtml[i].nameObj+'" nameuserobj="'+msg.datahtml[i].nameuserobj+'">' + msg.datahtml[i].nameuserobj + '</li>';
+            listuser += '<li class="listuser well well-sm" style="border:none;margin-bottom:0;list-style-type: none;background-color:ivory;" idobj="' + msg.datahtml[i].idObj + '" nameobj="'+msg.datahtml[i].nameObj+'" nameuserobj="'+msg.datahtml[i].nameuserobj+'">' + msg.datahtml[i].nameuserobj + '</li>';
         }
     }
     listuser += "<p class='tbao'>" + msg.reason + "</p>";
     $('#boxContent').html(listuser);
-    $('.tbao').fadeOut(10000);
+    $('.tbao').fadeOut(6000);
 });
 
 $(document).on('click', '.off-chat-private', function(e) {
@@ -78,7 +78,7 @@ $(document).on('click', '.listuser', function(e) {
     var nameuserobj = $(this).attr("nameuserobj");
     var iduser_tmp = $('#iduser').val();
     if (iduser == iduser_tmp) return;
-    var html_chatprivate = '<div id="' + nameuser + '" style="width: 25%;position: fixed;bottom: 0;right: 0;height: 300px;z-index: 999;background-color: #fafafa;/* opacity: 0.4; */border: 1px solid rgba(0,0,0,.1);box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);"><div style="   min-height: 35px;   background: #0288d1 !important;line-height: 35px;padding-left: 10px;"><span style="color:white" class="nameuser">'+nameuserobj+'</span><input type="button" class="off-chat-private" value="Hide" style="float: right;"></div><div class="kq-tinnhan-gui" style="border: 3px solid white;padding: 10px;height: 190px;overflow: scroll;"></div><div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-cell--6-col-tablet mdl-cell--6-col-desktop">            <input type="text" class="mess-tinnhan-gui" placeholder="Type a message" value="">            <input type="button" class="send-tinnhan-gui" idusernhan="'+iduser+'" value="Send">        </div>    </div>';
+    var html_chatprivate = '<div id="' + nameuser + '"style="max-width:250px;width: 30%;position: fixed;bottom: 0;left: 10px;height: 300px;z-index: 999;background-color: #eee;/* opacity: 0.4; */border: 1px solid rgba(0,0,0,.1);box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);"><div style="   min-height: 35px;   background: lightseagreen !important;line-height: 35px;padding-left: 10px;"><span style="color:white" class="nameuser">'+nameuserobj+'</span><input type="button" class="off-chat-private" value="  X " style="float: right;border: none;background-color: transparent; color: white; padding-top: 10px; "></div><div class="kq-tinnhan-gui" style="border: 3px solid white;padding: 10px;height: 190px;overflow-y: scroll;"></div><div class="mespri">            <input type="text" class="mess-tinnhan-gui form-control" placeholder="Type a message" value="">            <input type="button" class="send-tinnhan-gui btn btn-success" idusernhan="'+iduser+'" value="Send">        </div>    </div>';
     if ($("#" + nameuser).length == 0) {
         //it doesn't exist
         $('body').append(html_chatprivate);
@@ -124,7 +124,7 @@ socket.on('server-send-oneclient', function(msg) {
                 //$('#tinnhan-nhan').show();
                 //$('#tinnhan-nhan > .user-tinnhan-nhan ').html(msg.username);
                 //$('#tinnhan-nhan > #kq-tinnhan-gui ').append(msg.noidung);
-                var html_chatprivate = '<div id="' + msg.nameuser + '" style="width: 25%;position: fixed;bottom: 0;right: 0;height: 300px;z-index: 999;background-color: #fafafa;/* opacity: 0.4; */border: 1px solid rgba(0,0,0,.1);box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);"><div style="   min-height: 35px;   background: #0288d1 !important;line-height: 35px;padding-left: 10px;"><span style="color: white;">chat với </span><span class="nameuser">'+ msg.nameuserobj+'</span><input type="button" class="off-chat-private" value="TẮT" style="float: right;"></div><div class="kq-tinnhan-gui" style="border: 3px solid white;padding: 10px;height: 190px;overflow: scroll;"><p><b>'+msg.nameuser+':</b>'+msg.noidung+'</p></div><div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-cell--6-col-tablet mdl-cell--6-col-desktop">            <input type="text" class="mess-tinnhan-gui" placeholder="Type a message" value="">            <input type="button" class="send-tinnhan-gui" idusernhan="'+msg.iduser+'" value="gui">        </div>    </div>';
+                var html_chatprivate = '<div id="' + msg.nameuser + '"style="max-width:250px;width: 30%;position: fixed;bottom: 0;left: 10px;height: 300px;z-index: 999;background-color: #eee;/* opacity: 0.4; */border: 1px solid rgba(0,0,0,.1);box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);"><div style="   min-height: 35px;   background: lightseagreen !important;line-height: 35px;padding-left: 10px;"><span style="color:white" class="nameuser">'+msg.nameuserobj+'</span><input type="button" class="off-chat-private" value="  X " style="float: right;border: none;background-color: transparent; color: white; padding-top: 10px; "></div><div class="kq-tinnhan-gui" style="border: 3px solid white;padding: 10px;height: 190px;overflow-y: scroll;"><p><b>'+msg.nameuser+':</b>'+msg.noidung+'</p></div><div class="mespri">            <input type="text" class="mess-tinnhan-gui form-control" placeholder="Type a message" value="">            <input type="button" class="send-tinnhan-gui btn btn-success" idusernhan="'+msg.iduser+'" value="Send">        </div>    </div>';
                 if ($("#" +  msg.nameuser).length == 0) {
                     //it doesn't exist
                     $('body').append(html_chatprivate);
