@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th9 30, 2017 lúc 09:32 AM
+-- Thời gian đã tạo: Th10 10, 2017 lúc 03:35 PM
 -- Phiên bản máy phục vụ: 10.1.25-MariaDB
 -- Phiên bản PHP: 7.1.7
 
@@ -53,7 +53,11 @@ INSERT INTO `user` (`user_id`, `user_name`, `user_password`, `user_email`, `fisr
 (25, '1233', '$2a$10$wH8R/fvzT1YwIA0AMtg2j.9f0W/fKGMmGDGqm1qKSmdJHEssEXOFG', '123', '123213', '123', '2017-09-30 13:54:19'),
 (27, '4443', '$2a$10$J/.NqYMmAJB5ZtjcYxpvaeAetqZ1hW/XQzTG2SIVWtsbJ8liTJ3pC', 'qư', 'qưe', 'qưe', '2017-09-30 14:08:06'),
 (28, '1234', '$2a$10$Prkwi4n5iDEUTOwBg6QF8O/TzhIGKzuCFOfy3iip13puNQE/ok83e', 'qwe@gmail.com', 'qwe', 'werwer', '2017-09-30 14:19:11'),
-(29, 'thang', '$2a$10$AQSEOzuaaru.YPMI.OkfzOOcXvwBj9ytyBxvT39tvpZyBJUyses1O', 'dongianlaten@gmail.com', 'Lục', 'Thắng', '2017-09-30 14:30:17');
+(29, 'thang', '$2a$10$BvakOyxrh6/2Ge7noIEdE.vSl.CKU4PttxzHbvflFpj7OXt76aLXq', 'undefined', 'Lục', 'Thắng', '2017-09-30 14:30:17'),
+(30, 'thanh', '$2a$10$2xtzidNwlRoRunBxrVv4rOove13uQhYfDnbiwm5Cp/JVCNpN9i53u', 'aqq@gmail.com', 'Nguyễn', 'Thành', '2017-09-30 14:43:03'),
+(31, 'thien', '$2a$10$u31JbptXf5ikrmo0nh48L.u4orbzaJRRRR6Xxh.gtvX.3cnlhKziu', 'thien@gmail.com', 'thien', 'tran', '2017-10-12 15:34:24'),
+(32, 'thang12', '$2a$10$2xtzidNwlRoRunBxrVv4rOove13uQhYfDnbiwm5Cp/JVCNpN9i53u', 'ádlă@gmail.com', 'Thắng', 'Lục', '2017-11-09 16:16:07'),
+(33, 'thien123', '$2a$10$2xtzidNwlRoRunBxrVv4rOove13uQhYfDnbiwm5Cp/JVCNpN9i53u', 'qwe@gmail.com', 'thang', 'luc', '2017-11-10 18:00:15');
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -73,7 +77,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT cho bảng `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;COMMIT;
+  MODIFY `user_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

@@ -341,10 +341,32 @@ io.on("connection",function(socket){
     //         socket.emit("log-room");
     //         return false;
     //     }
-    for (e in socket.adapter.rooms){
-    if(data==e){
-            socket.emit("log-room");
-            return false;
+    for (e in socket.adapter.rooms)
+    {
+        if(data==e)
+        {
+            if(socket.Phong==data)
+            {
+                socket.emit("log-room");
+                return false;
+            }
+            else
+            {
+                socket.join(data);
+                socket.Phong= data;
+
+                var mang=[];
+                for(r in socket.adapter.rooms){
+                    console.log(r);
+                    if(mangID.indexOf(r)<0)
+                    {
+                     mang.push(r)
+                    }
+                }
+                io.sockets.emit("server-send-ds-room", mang);
+                socket.emit("server-send-room",data);
+                return false;
+            }
         }
     }
     socket.leave(socket.Phong);
@@ -360,7 +382,7 @@ io.on("connection",function(socket){
         }
     }
     io.sockets.emit("server-send-ds-room", mang);
-    socket.emit("server-send-room",data)
+    socket.emit("server-send-room",data);
         console.log(socket.adapter.rooms);
     });
     // socket.on("join-room2",function(){
